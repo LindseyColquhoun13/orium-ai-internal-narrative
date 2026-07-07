@@ -44,7 +44,7 @@
   .hero{
     background:radial-gradient(circle at 80% 20%, var(--navy) 0%, var(--navy-deep) 65%);
     color:#fff;
-    padding:96px 0 84px;
+    padding:80px 0 68px;
     position:relative;
     overflow:hidden;
   }
@@ -125,12 +125,31 @@
   .manifesto .l1{color:var(--coral-dark);}
   .manifesto .l2{color:var(--navy);}
 
-  .pull-quote{
-    border-left:3px solid var(--coral);padding:6px 0 6px 22px;margin:28px 0;
+  .principle{
+    border-left:3px solid var(--coral);background:var(--tan);border-radius:0 12px 12px 0;
+    padding:22px 26px;margin:30px 0;
   }
-  .pull-quote p{
-    font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--navy);
-    line-height:1.4;margin:0;
+  .principle .eyebrow-small{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--coral-dark);display:block;margin-bottom:10px;
+  }
+  .principle .main-line{
+    font-family:'Fraunces',serif;font-style:italic;font-size:23px;font-weight:600;color:var(--navy);
+    line-height:1.4;display:block;margin-bottom:10px;
+  }
+  .principle .support-line{
+    font-family:'Inter',sans-serif;font-size:15px;color:var(--ink-soft);line-height:1.5;display:block;
+  }
+
+  .highlight-line{
+    margin:4px 0 0;
+  }
+  .highlight-line .rule{
+    width:32px;height:2px;background:var(--coral);margin:0 0 20px;border-radius:2px;
+  }
+  .highlight-line p{
+    font-family:'Fraunces',serif;font-size:22px;font-style:italic;font-weight:500;
+    color:var(--navy);line-height:1.55;
   }
 
   /* PUZZLE INTERACTION */
@@ -211,12 +230,6 @@
   }
   .role-item.open .role-body{max-height:160px;padding:0 20px 18px;}
 
-  .everyone-row{
-    display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;padding-top:18px;
-    border-top:1px solid var(--tan-line);
-  }
-  .everyone-row .link-chip{font-size:14.5px;}
-
   /* ANAPHORA */
   .anaphora{margin:22px 0;}
   .anaphora p{margin:0 0 6px;font-family:'Fraunces',serif;font-size:19px;color:var(--navy);}
@@ -257,23 +270,22 @@
   <div class="wrap">
     <span class="section-label">01 · Our North Star</span>
     <h2>Where we're headed</h2>
-    <p>Our vision is to become the leading transformation and operating partner for autonomous commercial systems and operations.</p>
-    <p>In practical terms, we believe the organizations that lead over the next decade will be the ones that can serve any customer, human or agent, seamlessly, from first discovery through post-sale, while running internal operations with people and intelligent agents working side by side.</p>
+    <p>The organizations that lead over the next decade will be the ones that can serve any customer, human or agent, seamlessly, from first discovery through post-sale, while running internal operations with people and intelligent agents working side by side.</p>
 
     <div class="card tan">
       <strong>Agents bring efficiency, scale, and always-on execution. Humans bring judgment, nuance, and accountability.</strong>
     </div>
 
-    <p>We don't see those as competing ways of working. We believe the future belongs to organizations that know how to combine both well. That's the future we're helping our clients build, and it's the future we're building inside Orium too.</p>
-    <p>That's our north star in a nutshell, but you can read the full version here:</p>
+    <p>We believe the future belongs to organizations that know how to combine both well. That's the future we're helping our clients build, and it's the future we're building inside Orium too.</p>
+    <p>That's why our vision is to become the leading transformation and operating partner for autonomous commercial systems and operations. That's our north star in a nutshell, but you can read the full version here:</p>
     <p><span class="link-chip">→ Strategy Overview</span></p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <span class="section-label">02 · How Ideas Spread</span>
-    <h2>How ideas spread</h2>
+    <span class="section-label">02 · How We Learn</span>
+    <h2>How we learn</h2>
     <p>This isn't hypothetical. It's already happening across Orium.</p>
     <p>Over the past year, we've seen the same pattern play out again and again: someone shares a workflow because it saved them an afternoon, a teammate adapts it for their own work, someone else improves it. Repeat that enough times and it becomes part of how a team works. Thirty-plus of these ideas have come through AI Spotlight alone, and a handful of them have quietly become how a whole team operates.</p>
 
@@ -282,10 +294,13 @@
       "The workflow saved me maybe an hour a week. Once the rest of the team started using it, it saved a lot more than that."
     </div>
 
-    <p>None of this happened by accident. Jason set a clear direction, and we've invested across the company to help bring that vision to life. That includes everything from learning experiences and recognition programs to AI-first onboarding, communities of practice, practical tools, and dedicated spaces for people to experiment, learn, and share what works.</p>
-    <p>The programs aren't the advantage. They're how we've chosen to help good ideas spread.</p>
-    <div class="pull-quote">
-      <p>Our real advantage has always been how quickly we learn from each other. AI didn't create that. It helps good ideas spread faster.</p>
+    <p>None of this happened by accident. Jason set a clear direction, and we've invested across the company to help bring that vision to life. That includes everything from learning experiences and recognition programs to AI-first onboarding, communities of practice, practical tools, and dedicated spaces for people to experiment, learn, and share what works. Those investments make it easier for good ideas to spread.</p>
+    <p>That's always been one of Orium's strengths.</p>
+
+    <div class="principle">
+      <span class="eyebrow-small">Our Operating Principle</span>
+      <span class="main-line">Our real advantage isn't that one person figures something out. It's how quickly everyone else learns from it.</span>
+      <span class="support-line">AI didn't create that pattern. It just helps it move faster.</span>
     </div>
   </div>
 </section>
@@ -341,7 +356,11 @@
   <div class="wrap">
     <span class="section-label">04 · What We're Working Toward</span>
     <h2>What we're working toward</h2>
-    <p>Our goal is that this shift gives people more time for the parts of their work they actually enjoy: solving meaningful problems, taking on harder challenges, learning new things, and working alongside people who are learning with you. Less time on repetitive work, more time on a career that's genuinely interesting, not just a faster one.</p>
+    <div class="highlight-line">
+      <div class="rule"></div>
+      <p>Our goal is that this shift gives people more time for the parts of their work they actually enjoy: solving meaningful problems, taking on harder challenges, learning new things, and working alongside people who are learning with you.</p>
+    </div>
+    <p style="color:var(--ink-soft);margin-top:14px;">Less time on repetitive work, more time on a career that's interesting, not just a faster one.</p>
   </div>
 </section>
 
@@ -362,7 +381,7 @@
     <p>Getting there takes time. Some days it'll feel exciting, some days it'll feel uncomfortable, and that's part of learning. But the direction is the point: less time defending your time, more time spending it on things that matter.</p>
 
     <div class="card tan">
-      <span class="card-label">📍 How we'll know we're succeeding</span>
+      <span class="card-label">How we'll know we're succeeding</span>
       <strong>We don't think success is measured by how often people use AI tools.</strong> We measure it by whether work actually feels different: are people spending more time on work that requires them, are good ideas spreading faster, are we creating more space for judgment, creativity, and collaboration. Those are the signals we're actually paying attention to.
     </div>
 
@@ -380,8 +399,6 @@
     </div>
   </div>
 </section>
-
-
 
 <section>
   <div class="wrap">
@@ -464,7 +481,7 @@
       "I still work just as hard. I just spend a lot less time staring at a blank page before I get to the interesting part."
     </div>
 
-    <p>If you've got one of those decisions to share, we want to hear about it. That's how we've gotten here, and it's how we'll keep moving toward the north star we started with.</p>
+    <p>If you've got one of those, we want to hear about it, but the real work happens before that: every workflow someone shares, every idea someone makes a little easier for the next person to use. That's what actually moves us toward the north star we started with.</p>
   </div>
 </section>
 
