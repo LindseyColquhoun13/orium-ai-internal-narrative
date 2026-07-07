@@ -83,17 +83,12 @@
   }
   .card.tan{background:var(--tan);border:1px solid var(--tan-line);}
   .card.interactive{background:var(--tan);border:1.5px solid var(--coral);}
-  .card.placeholder{
-    background:transparent;border:1.5px dashed var(--tan-line);
-    color:var(--ink-soft);font-style:italic;
-  }
   .card-label{
     font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;
     text-transform:uppercase;margin-bottom:10px;display:block;
   }
   .card.interactive .card-label{color:var(--coral-dark);}
   .card.tan .card-label{color:var(--navy);}
-  .card.placeholder .card-label{color:var(--ink-soft);font-style:normal;}
 
   /* comparison table */
   .compare{
@@ -139,6 +134,78 @@
   }
   .principle .support-line{
     font-family:'Inter',sans-serif;font-size:15px;color:var(--ink-soft);line-height:1.5;display:block;
+  }
+
+  .feel-toggle{
+    background:var(--tan);border:1px solid var(--tan-line);border-radius:14px;
+    padding:24px 26px 22px;margin:28px 0;
+  }
+  .feel-toggle-label{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--navy);display:block;margin-bottom:16px;
+  }
+  .feel-tabs{display:flex;gap:8px;margin-bottom:18px;}
+  .feel-tab{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;
+    background:#fff;border:1.5px solid var(--tan-line);color:var(--ink-soft);
+    padding:9px 18px;border-radius:100px;cursor:pointer;transition:all .2s;
+  }
+  .feel-tab.active{background:var(--coral);border-color:var(--coral);color:#fff;}
+  .feel-panel{display:none;list-style:none;margin:0 0 16px;padding:0;}
+  .feel-panel.active{display:block;}
+  .feel-panel li{
+    position:relative;padding-left:20px;margin-bottom:10px;font-size:15px;color:var(--navy);line-height:1.5;
+  }
+  .feel-panel li::before{
+    content:'';position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--coral);
+  }
+  .feel-footer{
+    font-size:14px;color:var(--ink-soft);margin:0;padding-top:14px;border-top:1px solid var(--tan-line);
+  }
+
+  .dot-list{list-style:none;padding:0;margin:0;}
+  .dot-list li{
+    position:relative;padding-left:20px;margin-bottom:9px;font-size:15px;line-height:1.5;
+  }
+  .dot-list li:last-child{margin-bottom:0;}
+  .dot-list li::before{
+    content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--coral);
+  }
+
+  .story{
+    background:#fff;border-radius:12px;padding:18px 22px;margin:24px 0;
+    box-shadow:0 1px 3px rgba(35,42,69,.06), 0 1px 2px rgba(35,42,69,.08);
+    border-left:3px solid var(--navy);
+  }
+  .story-head{
+    display:flex;align-items:center;justify-content:space-between;cursor:pointer;
+  }
+  .story-teaser{
+    font-size:14.5px;color:var(--ink-soft);line-height:1.5;margin:4px 0 0;
+  }
+  .story-full{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .story.open .story-full{max-height:420px;margin-top:12px;}
+  .story.open .story-teaser{display:none;}
+  .story-label{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--navy);opacity:.6;display:block;margin-bottom:9px;
+  }
+  .story-body{
+    font-size:14.5px;color:var(--ink-soft);line-height:1.6;
+  }
+  .story-quote{
+    font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--navy);
+    margin-top:10px;padding-left:18px;position:relative;line-height:1.5;
+  }
+  .story-quote::before{
+    content:'\201C';position:absolute;left:-2px;top:-4px;font-size:30px;color:var(--coral);
+    font-family:'Fraunces',serif;font-style:normal;
+  }
+  .story.placeholder{
+    border-left:3px dashed var(--tan-line);box-shadow:none;background:transparent;
+  }
+  .story.placeholder .story-body{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--ink-soft);font-size:15px;
   }
 
   /* PUZZLE INTERACTION */
@@ -213,6 +280,7 @@
     transform:rotate(45deg);transition:transform .3s;flex-shrink:0;
   }
   .role-item.open .chev{transform:rotate(225deg);}
+  .story.open .chev{transform:rotate(225deg);}
   .role-body{
     max-height:0;overflow:hidden;transition:max-height .35s ease;
     padding:0 20px;color:var(--ink-soft);font-size:15px;
@@ -279,9 +347,20 @@
     <p>One thing we've learned over the past year is that the best ideas rarely stay where they started.</p>
     <p>We've seen the same pattern play out again and again: someone shares a workflow because it saved them an afternoon, a teammate adapts it for their own work, and someone else improves it. Repeat that enough times and it becomes part of how a team works. Over thirty ideas have come through the AI Spotlight Program alone, and a handful of them are already beginning to transform how our teams operate.</p>
 
-    <div class="card placeholder">
-      <span class="card-label">Placeholder</span>
-      A quote from an Orian about sharing a workflow that saved them time, and watching it spread to help the rest of the team.
+    <div class="story" id="storyCard">
+      <div class="story-head" onclick="toggleStory()">
+        <span class="story-label">A Real Example</span>
+        <span class="chev" id="storyChev"></span>
+      </div>
+      <p class="story-teaser">Jason noticed a bottleneck slowing another team down, and built a workflow to fix it, for everyone, not just himself.</p>
+      <div class="story-full" id="storyFull">
+        <div class="story-body">Jason Toews noticed that another team's work had become a bottleneck, not because people weren't capable, but because the technical context they needed for every ticket was scattered across Jira, Confluence, PRDs, pull requests, and meeting notes. Keeping all of that in sync by hand wasn't sustainable. Instead of treating that as someone else's problem, Jason built a workflow that pulls that context together automatically, flags what's missing or out of date, and tags the right person when something still needs an answer.
+        <br><br>
+        The result wasn't that Jason got faster. It's that everyone who touched that ticket after him did.</div>
+        <div class="story-quote">It has been a huge game changer for us... it's really helped with a bottleneck.
+          <div style="font-family:'Inter',sans-serif;font-style:normal;font-size:12.5px;color:var(--ink-soft);margin-top:4px;">· Keddy</div>
+        </div>
+      </div>
     </div>
 
     <p>None of this happened by accident. Jason set a clear direction, and we've invested across the company to help bring that vision to life. That includes everything from learning experiences and recognition programs to AI-first onboarding, communities of practice, practical tools, and dedicated spaces for people to experiment, learn, and share what works.</p>
@@ -301,6 +380,7 @@
     <h2>How we think about AI</h2>
     <p>Technology has always changed <em>how</em> work gets done. We believe AI is changing <em>where</em> people create value.</p>
     <p>That belief shapes how we've approached AI across Orium.</p>
+    <p>One thing we're confident about is that the way we work will keep changing. The tools will change. Our workflows will change. Even this guide will change. That's why we're focusing less on teaching one tool and more on building the habits that help us adapt.</p>
 
     <div class="compare">
       <div class="compare-col ai">
@@ -345,18 +425,50 @@
   <div class="wrap">
     <span class="section-label">04 · What Success Looks Like</span>
     <h2>What success looks like</h2>
-    <p style="font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--navy);line-height:1.35;margin-bottom:16px;">We aren't adopting AI because we want people doing more work. We're adopting it because we want more of the work you do to actually require you.</p>
-    <p style="color:var(--ink-soft);margin-bottom:34px;">Less time on repetitive work. More time on a career that's interesting, not just a faster one.</p>
+    <p style="font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--navy);line-height:1.35;margin-bottom:34px;">We aren't adopting AI because we want people doing more work. We're adopting it because we want more of the work you do to actually require you.</p>
     <p>Imagine getting to the end of the week and realizing you spent most of it on work that actually required <em>you</em>. Not the repetitive tasks. Not the coordination overhead. Not the first draft AI could've written for you.</p>
     <p>You spent it solving real problems, making calls, working with your team, using the judgement nobody else in the room had. That's the week we're building toward.</p>
 
-    <div class="card placeholder">
-      <span class="card-label">Placeholder</span>
-      A quote from an Orian about where AI reduced the repetitive work and freed up time for work with higher impact.
+    <div class="story placeholder">
+      <span class="story-label">Placeholder</span>
+      <div class="story-body">A quote from an Orian about where AI reduced the repetitive work and freed up time for work with higher impact.</div>
     </div>
 
     <p>We're already seeing examples of this across Orium. People are getting unstuck in minutes instead of hours. They're spending less time on a slow first draft and more time improving the idea. They're taking on problems they might have avoided six months ago, because AI helps them get started.</p>
-    <p>Getting there takes time. Some days it'll feel exciting, some days it'll feel uncomfortable, and that's part of learning. But the direction is the point: less time defending your time, more time spending it on things that matter.</p>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:19px;color:var(--navy);margin:38px 0 12px;">What this might feel like</h3>
+    <p>Getting there takes time. Some days it'll feel exciting. Some days it'll feel frustrating. That's part of learning. The direction is the point: less time defending your time, more time spending it on things that matter.</p>
+
+    <div class="feel-toggle">
+      <div class="feel-tabs">
+        <button class="feel-tab active" onclick="showFeel('first', this)">At first</button>
+        <button class="feel-tab" onclick="showFeel('later', this)">Later on</button>
+      </div>
+      <ul class="feel-panel active" id="feelFirst">
+        <li>You'll probably feel slower than you used to.</li>
+        <li>You'll try things that don't work.</li>
+        <li>Some tools will disappoint you.</li>
+        <li>You'll wonder if everyone else is figuring it out faster than you are.</li>
+      </ul>
+      <ul class="feel-panel" id="feelLater">
+        <li>You'll spend less time staring at blank pages.</li>
+        <li>You'll tackle work you used to put off.</li>
+        <li>You'll start noticing opportunities you didn't see before.</li>
+        <li>You'll wonder how you ever worked without some of these habits.</li>
+      </ul>
+      <p class="feel-footer">Both of those are normal. Learning almost always feels slower before it feels faster.</p>
+    </div>
+
+    <div class="card tan">
+      <span class="card-label">Why it's worth it</span>
+      <p style="margin-bottom:10px;">If we get this right:</p>
+      <ul class="dot-list">
+        <li>You'll spend more time on work that benefits from your judgement and experience.</li>
+        <li>You'll learn faster by building on what others discover, instead of figuring everything out yourself.</li>
+        <li>You'll develop habits, like learning quickly, sharing what works, and adapting to change, that will serve you throughout your career.</li>
+        <li>You'll help shape how we work, not just adapt to it.</li>
+      </ul>
+    </div>
 
     <div class="card tan">
       <span class="card-label">How we'll know we're succeeding</span>
@@ -449,9 +561,9 @@
 
     <p>What we do have is a company full of people who are willing to learn, experiment, and share what they discover, so no one has to figure this out on their own. No strategy can build this on its own. It gets built through thousands of small decisions we make every day: what we choose to learn, what we choose to share, and how willing we are to help the next person. That's the part all of us own.</p>
 
-    <div class="card placeholder">
-      <span class="card-label">Placeholder</span>
-      A quote from an Orian about still working just as hard, but spending less time on the tedious parts and more time on the interesting parts of the job.
+    <div class="story placeholder">
+      <span class="story-label">Placeholder</span>
+      <div class="story-body">A quote from an Orian about still working just as hard, but spending less time on the tedious parts and more time on the interesting parts of the job.</div>
     </div>
 
     <p>So if you've found a better way of doing something, don't keep it to yourself. Share it. That's how we've gotten here, and it's how we'll keep moving toward our north star.</p>
@@ -500,6 +612,22 @@
     var wasOpen = item.classList.contains('open');
     document.querySelectorAll('.role-item').forEach(function(r){ r.classList.remove('open'); });
     if(!wasOpen){ item.classList.add('open'); }
+  }
+
+  // what this might feel like toggle
+  function showFeel(which, btn){
+    var container = btn.closest('.feel-toggle');
+    container.querySelectorAll('.feel-tab').forEach(function(t){ t.classList.remove('active'); });
+    btn.classList.add('active');
+    container.querySelectorAll('.feel-panel').forEach(function(p){ p.classList.remove('active'); });
+    var target = which === 'first' ? 'feelFirst' : 'feelLater';
+    document.getElementById(target).classList.add('active');
+  }
+
+  // real example expand/collapse
+  function toggleStory(){
+    var card = document.getElementById('storyCard');
+    card.classList.toggle('open');
   }
 </script>
 
