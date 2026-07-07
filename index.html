@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bringing Our Strategy to Life · Orium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral: #E8613D;
+    --coral-dark: #C94A29;
+    --navy: #232A45;
+    --navy-deep: #1B203A;
+    --tan: #EDE1CC;
+    --tan-line: #DACBA8;
+    --cream: #FAF6EF;
+    --ink: #201C18;
+    --ink-soft: #55504A;
+    --max: 760px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;margin:0;}
+  a{color:inherit;}
+  em{font-style:italic;}
+
+  /* progress bar */
+  #progress{
+    position:fixed;top:0;left:0;height:3px;background:var(--coral);
+    width:0%;z-index:100;transition:width .1s linear;
+  }
+
+  /* HERO */
+  .hero{
+    background:radial-gradient(circle at 80% 20%, var(--navy) 0%, var(--navy-deep) 65%);
+    color:#fff;
+    padding:96px 0 84px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero svg.deco{position:absolute;top:0;right:0;width:520px;height:520px;opacity:.35;pointer-events:none;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--coral);margin-bottom:18px;display:block;
+  }
+  .hero h1{font-size:44px;line-height:1.12;max-width:600px;position:relative;z-index:2;}
+  .hero p.sub{
+    font-size:18px;color:#D9DCE6;max-width:520px;margin-top:20px;position:relative;z-index:2;
+  }
+
+  /* SECTIONS */
+  section{padding:64px 0;}
+  section + section{border-top:1px solid var(--tan-line);}
+  .section-label{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--coral-dark);margin-bottom:10px;display:block;
+  }
+  h2{font-size:28px;color:var(--navy);margin-bottom:22px;}
+  p{margin:0 0 18px;}
+  p:last-child{margin-bottom:0;}
+  strong{font-weight:600;color:var(--navy);}
+
+  .link-chip{
+    display:inline-flex;align-items:center;gap:6px;
+    color:var(--coral-dark);font-weight:600;text-decoration:none;
+    border-bottom:1px solid var(--coral);cursor:default;padding-bottom:1px;
+  }
+
+  /* CARD base */
+  .card{
+    border-radius:14px;padding:26px 28px;margin:26px 0;
+  }
+  .card.tan{background:var(--tan);border:1px solid var(--tan-line);}
+  .card.interactive{background:var(--tan);border:1.5px solid var(--coral);}
+  .card.placeholder{
+    background:transparent;border:1.5px dashed var(--tan-line);
+    color:var(--ink-soft);font-style:italic;
+  }
+  .card-label{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;margin-bottom:10px;display:block;
+  }
+  .card.interactive .card-label{color:var(--coral-dark);}
+  .card.tan .card-label{color:var(--navy);}
+  .card.placeholder .card-label{color:var(--ink-soft);font-style:normal;}
+
+  /* comparison table */
+  .compare{
+    display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;
+  }
+  .compare-col{
+    background:var(--tan);border:1px solid var(--tan-line);border-radius:14px;
+    padding:20px 22px;
+  }
+  .compare-col h4{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;
+    text-transform:uppercase;margin:0 0 14px;color:var(--navy);
+  }
+  .compare-col.ai h4{color:var(--coral-dark);}
+  .compare-row{
+    display:flex;align-items:center;gap:10px;padding:9px 0;
+    border-top:1px solid var(--tan-line);font-size:15px;
+  }
+  .compare-row:first-of-type{border-top:none;}
+  .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .ai .dot{background:var(--coral);}
+  .human .dot{background:var(--navy);}
+
+  .manifesto{
+    text-align:center;padding:38px 10px;margin:32px 0;
+    border-top:1.5px solid var(--tan-line);border-bottom:1.5px solid var(--tan-line);
+  }
+  .manifesto span{display:block;font-family:'Fraunces',serif;font-size:clamp(26px,5vw,34px);font-weight:700;line-height:1.28;}
+  .manifesto .l1{color:var(--coral-dark);}
+  .manifesto .l2{color:var(--navy);}
+
+  .pull-quote{
+    border-left:3px solid var(--coral);padding:6px 0 6px 22px;margin:28px 0;
+  }
+  .pull-quote p{
+    font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--navy);
+    line-height:1.4;margin:0;
+  }
+
+  /* PUZZLE INTERACTION */
+  .puzzle-zone{margin:34px 0 10px;text-align:center;}
+  .puzzle-stage{
+    display:flex;justify-content:center;align-items:center;
+    height:150px;position:relative;margin-bottom:8px;
+  }
+  .piece{
+    width:130px;height:110px;position:relative;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;
+    text-transform:uppercase;color:#fff;
+    transition:transform .55s cubic-bezier(.34,1.56,.64,1);
+    border-radius:10px;
+  }
+  .piece-ai{background:var(--coral);transform:translateX(-46px);z-index:2;}
+  .piece-ai::after{
+    content:'';position:absolute;right:-19px;top:50%;transform:translateY(-50%);
+    width:38px;height:38px;background:var(--coral);border-radius:50%;
+  }
+  .piece-human{background:var(--navy);transform:translateX(46px);}
+  .piece-human::before{
+    content:'';position:absolute;left:-19px;top:50%;transform:translateY(-50%);
+    width:38px;height:38px;background:var(--cream);border-radius:50%;z-index:3;
+  }
+  .puzzle-stage.combined .piece-ai{transform:translateX(-8px);}
+  .puzzle-stage.combined .piece-human{transform:translateX(8px);}
+  .puzzle-btn{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;
+    background:none;border:1.5px solid var(--coral);color:var(--coral-dark);
+    padding:9px 20px;border-radius:100px;cursor:pointer;
+    transition:background .2s;
+  }
+  .puzzle-btn:hover{background:var(--coral);color:#fff;}
+  .puzzle-result{
+    max-height:0;overflow:hidden;transition:max-height .5s ease, opacity .5s ease;
+    opacity:0;font-family:'Fraunces',serif;font-size:19px;color:var(--navy);
+    margin-top:16px;
+  }
+  .puzzle-result.show{max-height:140px;opacity:1;}
+
+  /* JUDGMENT TEST */
+  .test-buttons{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 4px;}
+  .test-btn{
+    flex:1;min-width:200px;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;
+    background:#fff;border:1.5px solid var(--tan-line);color:var(--navy);
+    padding:14px 16px;border-radius:10px;cursor:pointer;text-align:left;
+    transition:border-color .2s,background .2s;
+  }
+  .test-btn:hover{border-color:var(--coral);}
+  .test-btn.chosen{border-color:var(--coral);background:#fff5f1;}
+  .test-answer{
+    display:none;margin-top:16px;padding:16px 18px;background:#fff;
+    border-left:3px solid var(--coral);border-radius:0 8px 8px 0;font-size:15px;
+  }
+  .test-answer.show{display:block;}
+
+  /* ROLE ACCORDION */
+  .role-item{
+    border:1.5px solid var(--coral);border-radius:12px;margin-bottom:12px;
+    overflow:hidden;background:#fff;
+  }
+  .role-head{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:16px 20px;cursor:pointer;user-select:none;
+  }
+  .role-head .rt{display:flex;align-items:center;gap:12px;font-weight:600;color:var(--navy);font-size:15.5px;}
+  .role-emoji{font-size:20px;}
+  .chev{
+    width:11px;height:11px;border-right:2px solid var(--coral);border-bottom:2px solid var(--coral);
+    transform:rotate(45deg);transition:transform .3s;flex-shrink:0;
+  }
+  .role-item.open .chev{transform:rotate(225deg);}
+  .role-body{
+    max-height:0;overflow:hidden;transition:max-height .35s ease;
+    padding:0 20px;color:var(--ink-soft);font-size:15px;
+  }
+  .role-item.open .role-body{max-height:160px;padding:0 20px 18px;}
+
+  .everyone-row{
+    display:flex;gap:22px;flex-wrap:wrap;margin-top:22px;padding-top:18px;
+    border-top:1px solid var(--tan-line);
+  }
+  .everyone-row .link-chip{font-size:14.5px;}
+
+  /* ANAPHORA */
+  .anaphora{margin:22px 0;}
+  .anaphora p{margin:0 0 6px;font-family:'Fraunces',serif;font-size:19px;color:var(--navy);}
+
+  footer{
+    padding:40px 0 60px;text-align:center;color:var(--ink-soft);font-size:13.5px;
+  }
+
+  @media(max-width:600px){
+    .hero h1{font-size:32px;}
+    .compare{grid-template-columns:1fr;}
+    .hero svg.deco{width:320px;height:320px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<section class="hero">
+  <svg class="deco" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="380" cy="120" r="95" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5"/>
+    <rect x="270" y="170" width="150" height="150" rx="14" fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1.5"/>
+    <polygon points="430,260 500,400 360,400" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.5"/>
+    <rect x="330" y="330" width="90" height="90" rx="6" fill="none" stroke="#E8613D" stroke-opacity="0.5" stroke-width="1.5" transform="rotate(45 375 375)"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow">An Orium Guide</span>
+    <h1>Bringing Our Strategy<br>to Life</h1>
+    <p class="sub" style="font-size:15px;">This guide has one job: help every Orian understand the thinking behind where we're going, so it shows up in how you actually work, not just what you've heard about the strategy.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">01 · Our North Star</span>
+    <h2>Where we're headed</h2>
+    <p>Our vision is to become the leading transformation and operating partner for autonomous commercial systems and operations.</p>
+    <p>In practical terms, we believe the organizations that lead over the next decade will be the ones that can serve any customer, human or agent, seamlessly, from first discovery through post-sale, while running internal operations with people and intelligent agents working side by side.</p>
+
+    <div class="card tan">
+      <strong>Agents bring efficiency, scale, and always-on execution. Humans bring judgment, nuance, and accountability.</strong>
+    </div>
+
+    <p>We don't see those as competing ways of working. We believe the future belongs to organizations that know how to combine both well. That's the future we're helping our clients build, and it's the future we're building inside Orium too.</p>
+    <p>That's our north star in a nutshell, but you can read the full version here:</p>
+    <p><span class="link-chip">→ Strategy Overview</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">02 · How Ideas Spread</span>
+    <h2>How ideas spread</h2>
+    <p>This isn't hypothetical. It's already happening across Orium.</p>
+    <p>Over the past year, we've seen the same pattern play out again and again: someone shares a workflow because it saved them an afternoon, a teammate adapts it for their own work, someone else improves it. Repeat that enough times and it becomes part of how a team works. Thirty-plus of these ideas have come through AI Spotlight alone, and a handful of them have quietly become how a whole team operates.</p>
+
+    <div class="card placeholder">
+      <span class="card-label">DRAFT quote, pending confirmation from Ben/Jason C</span>
+      "The workflow saved me maybe an hour a week. Once the rest of the team started using it, it saved a lot more than that."
+    </div>
+
+    <p>None of this happened by accident. Jason set a clear direction, and we've invested across the company to help bring that vision to life. That includes everything from learning experiences and recognition programs to AI-first onboarding, communities of practice, practical tools, and dedicated spaces for people to experiment, learn, and share what works.</p>
+    <p>The programs aren't the advantage. They're simply how we've chosen to invest in it.</p>
+    <div class="pull-quote">
+      <p>Our real advantage has always been how quickly we learn from each other. AI didn't create that. It simply helps good ideas spread faster.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">03 · Our POV</span>
+    <h2>How we think about AI</h2>
+    <p>Technology has always changed <em>how</em> work gets done. We believe AI is changing <em>where</em> people create value.</p>
+    <p>That belief shapes how we've approached AI across Orium.</p>
+
+    <div class="compare">
+      <div class="compare-col ai">
+        <h4>AI Agents</h4>
+        <div class="compare-row"><span class="dot"></span>Efficiency</div>
+        <div class="compare-row"><span class="dot"></span>Scale</div>
+        <div class="compare-row"><span class="dot"></span>Always-on execution</div>
+      </div>
+      <div class="compare-col human">
+        <h4>Humans</h4>
+        <div class="compare-row"><span class="dot"></span>Judgment</div>
+        <div class="compare-row"><span class="dot"></span>Nuance</div>
+        <div class="compare-row"><span class="dot"></span>Accountability</div>
+      </div>
+    </div>
+
+    <p>Neither replaces the other. The opportunity comes from combining both well.</p>
+    <p>Around Orium, we've started using a simple phrase to describe that idea:</p>
+
+    <div class="manifesto">
+      <span class="l1">Superhuman Leverage.</span>
+      <span class="l2">Human Values.</span>
+    </div>
+
+    <p>For us, it means using AI to expand what's possible while making sure people spend more time doing the work that benefits most from their judgment, creativity, and experience.</p>
+
+    <p style="font-size:15px;color:var(--ink-soft);">One way we've found useful to think about that is through a metaphor Nik often uses: think of the work as a puzzle. AI is great at finding and placing pieces quickly. What it still can't do is decide what the picture should be, notice when a piece has been forced into the wrong spot, or know which puzzle is even worth solving. That's where people come in, and it's not the leftover work. It's the harder, more interesting half of the job.</p>
+
+    <div class="puzzle-zone">
+      <div class="puzzle-stage" id="puzzleStage">
+        <div class="piece piece-ai">AI</div>
+        <div class="piece piece-human">Human</div>
+      </div>
+      <button class="puzzle-btn" id="puzzleBtn">Combine the pieces</button>
+      <div class="puzzle-result" id="puzzleResult">
+        The puzzle doesn't disappear. It gets bigger.<br>More possibilities require more judgment, not less.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">04 · What We're Working Toward</span>
+    <h2>What we're working toward</h2>
+    <p>Our hope is that this shift gives people more time for the parts of their work they actually enjoy: solving meaningful problems, taking on harder challenges, learning new things, and working alongside people who are learning with you. Less time on repetitive work, more time on a career that's genuinely interesting, not just a faster one.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">05 · What Success Looks Like</span>
+    <h2>What success looks like</h2>
+    <p style="font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--navy);line-height:1.35;margin-bottom:34px;">We aren't adopting AI because we want people doing more work. We're adopting it because we want more of the work you do to actually require you.</p>
+    <p>Imagine getting to the end of the week and realizing you spent most of it on work that actually required <em>you</em>. Not the repetitive tasks. Not the coordination overhead. Not the first draft AI could've written for you.</p>
+    <p>You spent it solving real problems, making calls, working with your team, using the judgment nobody else in the room had. That's the week we're building toward.</p>
+
+    <div class="card placeholder">
+      <span class="card-label">DRAFT quote, pending confirmation from Raj</span>
+      "The best part isn't that I finish interviews faster. It's that I get to spend more time actually getting to know candidates instead of doing paperwork after."
+    </div>
+
+    <p>For a growing number of Orians, it's already changing what their week feels like. They're getting unstuck in minutes instead of hours. They're spending less time on a slow first draft and more time improving the idea. They're taking on problems they might have avoided six months ago, because AI helps them get started.</p>
+    <p>Getting there takes time. Some days it'll feel exciting, some days it'll feel uncomfortable, and that's part of learning. But the direction is the point: less time defending your time, more time spending it on things that matter.</p>
+
+    <div class="card tan">
+      <span class="card-label">📍 How we'll know we're succeeding</span>
+      <strong>We don't think success is measured by how often people use AI tools.</strong> We measure it by whether work actually feels different: are people spending more time on work that requires them, are good ideas spreading faster, are we creating more space for judgment, creativity, and collaboration. Those are the signals we're actually paying attention to.
+    </div>
+
+    <p style="margin-top:20px;">One question we've found helpful along the way:</p>
+
+    <div class="card interactive">
+      <p style="font-size:17px;font-weight:600;color:var(--navy);margin-bottom:0;">Is this work benefiting from my experience and judgment, or is it simply consuming my time?</p>
+      <div class="test-buttons">
+        <button class="test-btn" data-answer="time">It's consuming my time</button>
+        <button class="test-btn" data-answer="judgment">It's benefiting from my judgment</button>
+      </div>
+      <div class="test-answer" id="answerTime">That's worth asking whether AI could help with. Time spent isn't automatically value created.</div>
+      <div class="test-answer" id="answerJudgment">That's probably where you want to spend more of your energy, not less.</div>
+      <p style="font-size:14px;color:var(--ink-soft);margin-top:14px;margin-bottom:0;">It's not a perfect test. But it's a useful place to start.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<section>
+  <div class="wrap">
+    <span class="section-label">06 · What This Looks Like In Your Role</span>
+    <h2>What this looks like in your role</h2>
+    <p style="margin-bottom:24px;">These are real stories from across Orium, not hypotheticals. Click to preview.</p>
+
+    <div class="role-item">
+      <div class="role-head" onclick="toggleRole(this)">
+        <span class="rt"><span class="role-emoji">🖥️</span>A Day in the Life of a Developer</span>
+        <span class="chev"></span>
+      </div>
+      <div class="role-body"><p>Follow a developer through a typical day and see where AI creates leverage, where judgment matters most, and how our approach to building is evolving.</p><p><span class="link-chip">→ Read more</span></p></div>
+    </div>
+
+    <div class="role-item">
+      <div class="role-head" onclick="toggleRole(this)">
+        <span class="rt"><span class="role-emoji">🎨</span>A Day in the Life of a Designer</span>
+        <span class="chev"></span>
+      </div>
+      <div class="role-body"><p>Explore how designers are using AI to accelerate exploration while spending more time on strategy, creativity, and client collaboration.</p><p><span class="link-chip">→ Read more</span></p></div>
+    </div>
+
+    <div class="role-item">
+      <div class="role-head" onclick="toggleRole(this)">
+        <span class="rt"><span class="role-emoji">📊</span>A Day in the Life of a Product Manager</span>
+        <span class="chev"></span>
+      </div>
+      <div class="role-body"><p>Follow a product manager through a typical day and see how AI is changing the path from problem to roadmap, surfacing risks earlier, and creating more space for strategy and stakeholder conversations.</p><p><span class="link-chip">→ Read more</span></p></div>
+    </div>
+
+    <div class="role-item">
+      <div class="role-head" onclick="toggleRole(this)">
+        <span class="rt"><span class="role-emoji">🤝</span>A Day in the Life of an Account Executive</span>
+        <span class="chev"></span>
+      </div>
+      <div class="role-body"><p>Explore how AI is helping our GTM teams prepare faster, think more strategically, and deepen customer conversations.</p><p><span class="link-chip">→ Read more</span></p></div>
+    </div>
+
+    <div class="role-item">
+      <div class="role-head" onclick="toggleRole(this)">
+        <span class="rt"><span class="role-emoji">👥</span>A Day in the Life of a Manager</span>
+        <span class="chev"></span>
+      </div>
+      <div class="role-body"><p>See how managers are creating space for experimentation, helping teams find leverage, and bringing the strategy to life in day-to-day work.</p><p><span class="link-chip">→ Read more</span></p></div>
+    </div>
+
+    <div class="role-item">
+      <div class="role-head" onclick="toggleRole(this)">
+        <span class="rt"><span class="role-emoji">👥</span>Everyone</span>
+        <span class="chev"></span>
+      </div>
+      <div class="role-body"><p>No matter your role, AI Fluency is the common foundation we're building across Orium. It outlines the capabilities we believe every Orian should develop over time, regardless of function.</p><p><span class="link-chip">→ Explore the AI Fluency framework</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">07 · Keep Learning</span>
+    <h2>Keep learning</h2>
+    <p>Our value has never come from having all the answers. It comes from asking better questions, applying good judgment, and deciding what actually matters when everything is competing for attention.</p>
+
+    <div class="anaphora">
+      <p>None of us has this completely figured out.</p>
+      <p>Our clients don't.</p>
+      <p>Our partners don't.</p>
+      <p>We don't either.</p>
+    </div>
+
+    <p>That's one of the reasons this is such an exciting time to be doing this work.</p>
+    <p>What we do have is a company full of people who are willing to learn, experiment, and share what they discover, so no one has to figure this out on their own.</p>
+
+    <div class="card tan">
+      No strategy can build this on its own. It gets built through thousands of small decisions we make every day: what we choose to learn, what we choose to share, and how willing we are to help the next person. That's the part all of us own.
+    </div>
+
+    <div class="card placeholder">
+      <span class="card-label">DRAFT quote, pending confirmation from Katt</span>
+      "I still work just as hard. I just spend a lot less time staring at a blank page before I get to the interesting part."
+    </div>
+
+    <p>If you've got one of those decisions to share, we want to hear about it. That's how we've gotten here, and it's how we'll keep moving toward the north star we started with.</p>
+  </div>
+</section>
+
+<footer>Orium · Bringing Our Strategy to Life</footer>
+
+<script>
+  // scroll progress
+  window.addEventListener('scroll', function(){
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    document.getElementById('progress').style.width = pct + '%';
+  });
+
+  // puzzle interaction
+  var puzzleBtn = document.getElementById('puzzleBtn');
+  var puzzleStage = document.getElementById('puzzleStage');
+  var puzzleResult = document.getElementById('puzzleResult');
+  var combined = false;
+  puzzleBtn.addEventListener('click', function(){
+    combined = !combined;
+    puzzleStage.classList.toggle('combined', combined);
+    puzzleBtn.textContent = combined ? 'Pull them apart' : 'Combine the pieces';
+    setTimeout(function(){
+      puzzleResult.classList.toggle('show', combined);
+    }, combined ? 250 : 0);
+    if(!combined){ puzzleResult.classList.remove('show'); }
+  });
+
+  // judgment test
+  document.querySelectorAll('.test-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.test-btn').forEach(function(b){ b.classList.remove('chosen'); });
+      document.querySelectorAll('.test-answer').forEach(function(a){ a.classList.remove('show'); });
+      btn.classList.add('chosen');
+      var target = btn.getAttribute('data-answer') === 'time' ? 'answerTime' : 'answerJudgment';
+      document.getElementById(target).classList.add('show');
+    });
+  });
+
+  // role accordion
+  function toggleRole(headEl){
+    var item = headEl.parentElement;
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.role-item').forEach(function(r){ r.classList.remove('open'); });
+    if(!wasOpen){ item.classList.add('open'); }
+  }
+</script>
+
+</body>
+</html>
